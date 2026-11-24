@@ -1236,3 +1236,343 @@ The review also identified an unresolved requirement: average capacity does **no
 
 I updated [docs/assumptions.md](./docs/assumptions.md) and the phase status/execution log in [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md). Arithmetic was checked with Python, recovery cases were manually traced against Phases 2–5, and whitespace checks passed. No executable tests or real Salesforce verification were performed. Chat history and commits were preserved; Phases 7–8 remain unstarted.
 
+# Execute phase 7
+
+> proceed with phase 7
+
+<details><summary>6 previous messages</summary>
+
+> I’ll read Phase 7 and check its dependencies and existing artifacts, then carry out the authorized work and record the validation results in the plan.
+>
+> <details><summary>Explored 2 files, ran 9 commands</summary>
+>
+> <details><summary>Explored a file</summary>
+>
+> - Read `./IMPLEMENTATION_PLAN.md`
+>
+> </details>
+>
+> - Ran `git status --short; rg --files -g AGENTS.md -g package.json -g '*phase*' -g '*Phase*'`
+>
+> - Ran `Get-Content Round1-Tequity.html; Get-Content docs/requirements-checklist.md; Get-Content docs/architecture.md`
+>
+> - Ran `Get-Content docs/assumptions.md; Get-Content docs/recovery-capacity.md`
+>
+> - Ran `Get-Content docs/conflict-rules.md; Get-Content docs/inbound-flow.md; Get-Content docs/outbound-flow.md; Get-Content docs/data-model.md`
+>
+> - Ran `git log --oneline -12; rg --files -g '!Round1-Tequity.html' -g '!*.pdf'; Get-Content C:/Users/yashp/.codex/skills/.system/openai-docs/SKILL.md`
+>
+> - Ran `Get-Content Round1-Tequity.html | Select-Object -Skip 700 -First 350`
+>
+> <details><summary>Explored a file</summary>
+>
+> - Read `./docs/recovery-capacity.md`
+>
+> </details>
+>
+> - Ran `Get-Content docs/conflict-rules.md | Select-Object -First 105; Get-Content Chat_History/chat_history.md -TotalCount 28; Get-Content docs/requirements-checklist.md`
+>
+> - Ran `$brief = Get-Content Round1-Tequity.html -Raw; $body = [regex]::Match($brief, '(?s)<main.*?</main>').Value; [System.Net.WebUtility]::HtmlDecode([regex]::Replace($body, '<[^>]+>', ' '))`
+>
+> - Ran `Get-Content docs/recovery-capacity.md | Select-Object -Skip 155; Get-Content docs/assumptions.md | Select-Object -First 100; Get-Content docs/conflict-rules.md | Select-Object -First 42; Get-Item Chat_History/chat_history.md | Select-Object Length; rg '^#' Chat_History/chat_history.md`
+>
+> </details>
+>
+> Phases 1–6 have the required design artifacts. I’ll carry forward the revised recovery estimate of about 24 hours and the unresolved 30-second latency feasibility gate. The existing chat-history file does not establish complete coverage of every task chat, so that submission item will remain pending.
+>
+> I’ll create the consolidated design, 10-minute walkthrough, and submission checklist. I’m also using the openai-docs skill to check export guidance; existing chat files and commits will stay untouched.
+>
+> <details><summary>Created a file, ran 3 commands, searched the web</summary>
+>
+> Searched the web for `site.help.openai.com export ChatGPT history data export`
+>
+> - Ran `Get-Content docs/recovery-capacity.md | Select-Object -Skip 121 -First 35; Get-Content docs/architecture.md -TotalCount 95; Get-Content docs/inbound-flow.md | Select-Object -First 55; git remote -v; git ls-files`
+>
+> Searched the web for `https://help.openai.com/en/articles/7260999-exporting-your-chatgpt-history-and-data`
+>
+> - Ran `Get-Content docs/recovery-capacity.md | Select-Object -Skip 112 -First 12; Get-FileHash Chat_History/chat_history.md -Algorithm SHA256; git rev-parse HEAD; git rev-list --count HEAD`
+>
+> - Wrote `./docs/design.md` (+160 -0)
+>
+> - Ran `rg -n 'spacing|millisecond|ceil|90|1/C|1000' docs/outbound-flow.md`
+>
+> </details>
+>
+> The draft now covers all 12 sections from the brief and selects exactly three operational metrics. The consistency review preserves the key distinction: verified echoes stop without creating new edits, while genuine remote changes can still trigger repairs. Recovery uses the same rules after replay completes.
+>
+> I’ll finish the walkthrough and checklist, then check links, arithmetic, repository state, and the existing chat file’s hash.
+>
+> <details><summary>Created 2 files, edited 3 files, ran 2 commands</summary>
+>
+> - Wrote `./docs/design.md` (+1 -1)
+> - Wrote `./docs/submission-checklist.md` (+51 -0)
+> - Wrote `./docs/walkthrough.md` (+19 -0)
+> - Wrote `./IMPLEMENTATION_PLAN.md` (+2 -1)
+> - Wrote `./docs/requirements-checklist.md` (+18 -0)
+> - Ran `$files = @('docs/design.md','docs/walkthrough.md','docs/submission-checklist.md','docs/requirements-checklist.md'); foreach ($file in $files) { $content = Get-Content -LiteralPath $file -Raw; foreach ($match in [regex]::Matches($content, '\]\(([^)]+)\)')) { $target = $match.Groups[1].Value; if ($target -notmatch '^https?://') { $resolved = Join-Path (Split-Path $file) $target; if (-not (Test-Path -LiteralPath $resolved)) { throw "Broken link in ${file}: $target" } } } }; $design = Get-Content docs/design.md -Raw; 'Design numbered sections: ' + [regex]::Matches($design, '(?m)^## \d+\.').Count; 'Metric rows: ' + [regex]::Matches($design, '(?m)^\| [123]\. ').Count; 'Walkthrough seconds: ' + (90+50+50+90+60+50+120+50+40); 'Peak total minutes: ' + (73+519600*3/19/60); 'Quiet total minutes: ' + (4.6+21876*3/76/60); 'All local links resolve'; Get-FileHash Chat_History/chat_history.md -Algorithm SHA256; git diff --check; git status --short; git log --oneline -3`
+> - Ran `$design = Get-Content docs/design.md -Raw; $metrics = [regex]::Match($design, '(?s)## 11\..*?(?=## 12\.)').Value; $count = [regex]::Matches($metrics, '(?m)^\| [123]\. ').Count; if ($count -ne 3) { throw "Expected three primary metrics; found $count" }; 'Primary metric rows in section 11: ' + $count; foreach ($file in @('docs/design.md','docs/walkthrough.md','docs/submission-checklist.md')) { if (Select-String -LiteralPath $file -Pattern '[ \t]+$') { throw "Trailing whitespace: $file" } }; 'New artifact whitespace checks passed'; git diff --stat; git rev-parse HEAD`
+>
+> </details>
+</details>
+
+Phase 7 artifacts are ready:
+
+- [Design](./docs/design.md): all 12 sections and exactly three operational metrics.
+- [10-minute walkthrough](./docs/walkthrough.md).
+- [Submission checklist](./docs/submission-checklist.md), including [official export guidance](https://help.openai.com/en/articles/7260999-exporting-your-chatgpt-history-and-data).
+
+Validated links, arithmetic, section counts and whitespace. Chat history and existing commits remain unchanged.
+
+Phase 7 is recorded as **partial**: complete authentic chats, final repository packaging/access validation and revised delivery timing remain pending. The 30-second latency feasibility gate stays explicit; Phase 8 was not started.
+
+> explain in detail what all was implemented
+
+Phase 7 assembled the **required submission documents** from the design work completed in Phases 1–6. It did **not implement the executable synchronization service**; that remains optional Phase 8.
+
+The work produced three documents, updated two project records, and reviewed the design for consistency.
+
+### 1. Consolidated design document
+
+Created [docs/design.md](./docs/design.md).
+
+This brings the earlier specifications into one document following **all 12 sections required by the original assignment**.
+
+| Section | What it contains |
+|---|---|
+| **1. Assumptions and questions** | Workload, payload, replay, conflict, mapping, durability and API assumptions; consequences if those assumptions are false. |
+| **2. Systems and interfaces** | A diagram showing users, Salesforce, our HTTP role, worker role and PostgreSQL; who initiates each HTTPS call; proposed interface contracts. |
+| **3. Subproblems and build order** | Why identity and conflict rules come first, followed by durable transactions, inbound handling, outbound work, dependencies and recovery. |
+| **4. Stored data** | Current records, source mappings, field candidates, immutable history, receipts, jobs, mutations, evidence, dependencies and replay checkpoints. |
+| **5. Inbound synchronization** | Validation, duplicate detection, history preservation, field resolution and commit-before-acknowledgment. |
+| **6. Outbound synchronization** | Atomic portal save/outbox, worker processing, conditional patches, create recovery, retries, throttling and request pacing. |
+| **7. Concurrent changes** | How independent fields survive and how same-field conflicts resolve deterministically. |
+| **8. Duplicate and older events** | Separate rules for duplicate deliveries, distinct equal-value edits and late events affecting different fields. |
+| **9. Loop prevention** | How verified echoes become application evidence while genuine remote edits and necessary repairs still proceed. |
+| **10. Six-hour outage** | Durable state, replay barriers, checkpoint safety, request accounting and recovery arithmetic. |
+| **11. Operational metrics** | Exactly three primary metrics, escalation thresholds and reasons. |
+| **12. Exclusions and submission state** | What remains outside scope, the distinction between demo and production persistence, and outstanding submission items. |
+
+The document links to the detailed earlier specifications so a teammate can move from the consolidated explanation to schema, pseudocode and failure cases.
+
+### 2. Conflict, duplicate and loop rules were made explicit
+
+These rules were **consolidated and reviewed**, rather than newly implemented in code.
+
+**For conflicts**, each field retains the latest original edit from each source, selected by that source’s revision. Those two candidates are then compared by timestamp, with the portal winning exact timestamp ties.
+
+For example:
+
+- A portal city change and a Salesforce phone change both survive.
+- Two edits to phone produce one current value, while both original edits remain in history.
+- An older event can still contribute a city change even if its phone change is obsolete.
+
+Keeping both source candidates matters when a source clock moves backward. Keeping only the overall current winner would lose information needed for later decisions.
+
+**For duplicates**, the same event identity and canonical content produce no additional business effect. A different source commit that happens to set the same value remains a distinct historical edit.
+
+**For loops**, a verified echo refers back to the original edit and records that it was applied remotely. It does not become another human edit with a newer timestamp. However, a genuine Salesforce change can still require a repair when it differs from the resolved winner.
+
+### 3. Recovery arithmetic was carried forward accurately
+
+The consolidated design preserves Phase 6’s revised estimate of **approximately 24 hours of recovery**, replacing the preliminary 120-minute example.
+
+The calculation assumes:
+
+| Input | Value |
+|---|---:|
+| Portal-origin edits | 20/s |
+| Salesforce-origin edits | 20/s |
+| Outage | Six hours |
+| Initial portal backlog | 432,000 jobs |
+| Replay entries including bounded overlap | 433,000 |
+| Replay barrier | 73 minutes |
+| Portal jobs when that barrier releases | 519,600 |
+| Requests per mapped update | Three |
+| Achieved outbound service | 89 requests/s |
+| Ongoing portal demand | 60 requests/s |
+| Exceptional overhead | 10 requests/s |
+
+That leaves **19 requests/s** for old jobs:
+
+```text
+Drain time = 519,600 × 3 ÷ 19 ÷ 60
+           = 1,367.37 minutes
+
+Total      = 73 + 1,367.37
+           = 1,440.37 minutes
+           ≈ 24 hours
+```
+
+The document clearly labels this as a **conditional estimate**. More history pages, lower quotas, throttling or repeated conflicts can increase it or prevent the backlog from draining.
+
+It also preserves the unresolved limitation: the assumed workload and sustained throughput **do not prove worst-case healthy synchronization within 30 seconds**, especially during bursts.
+
+### 4. Exactly three operational metrics were selected
+
+The design now specifies these three primary metrics:
+
+| Metric | Escalation |
+|---|---|
+| **Oldest unconfirmed propagation age** | Page at **30 seconds** in healthy operation; warn at 20 seconds sustained for 60 seconds. |
+| **Maximum outbound starts in a rolling second** | Page immediately above **100**; investigate above the configured operating limit of 90. |
+| **Recovery retention safety margin** | Page below **six hours**, or on an unsafe recovery estimate, confirmed history gap or expired cursor. |
+
+Each metric includes its purpose, measurement limitations and proposed response. These are proposed operational policies; no monitoring system was built.
+
+### 5. Ten-minute walkthrough was prepared
+
+Created [docs/walkthrough.md](./docs/walkthrough.md).
+
+It allocates **exactly 600 seconds** across:
+
+- Assumptions and open questions.
+- Architecture and callers.
+- Stored data and build order.
+- Conflict handling.
+- Duplicate, older-event and loop rules.
+- Outbound safety.
+- Outage recovery and arithmetic.
+- Metrics.
+- Exclusions and submission gaps.
+
+It provides talking points and references for follow-up questions. A live presentation or timed rehearsal was **not** performed.
+
+### 6. Submission readiness was documented honestly
+
+Created [docs/submission-checklist.md](./docs/submission-checklist.md).
+
+It records which deliverables exist and which remain pending.
+
+For chat history, it:
+
+- Records the existing file’s size and SHA-256 preservation baseline.
+- Explains the available official export process.
+- Describes how to verify coverage across all assignment chats.
+- Leaves authenticity and completeness **pending**.
+- Makes no claim that a summary or reconstructed conversation is a full export.
+
+For git history, it:
+
+- Lists the three existing reachable commits and their messages.
+- Records the configured repository origin.
+- Notes that current artifacts are not all committed.
+- Distinguishes local repository availability from verified recipient access.
+- Preserves existing commits without creating, squashing or rewriting any.
+
+It also records that the original submission deadline had already passed and that revised delivery timing remains unresolved.
+
+### 7. Project tracking was updated
+
+Updated:
+
+- [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md): Phase 7 is **partial**, with an execution-log entry describing work, validation and outstanding gaps.
+- [docs/requirements-checklist.md](./docs/requirements-checklist.md): added current evidence against the original requirements while retaining historical phase records.
+
+The pre-existing Phase 6 changes in the assumptions, recovery document and plan were reused.
+
+### 8. Validation performed
+
+The checks confirmed:
+
+- All **12 numbered design sections** are present.
+- Section 11 contains **exactly three primary metrics**.
+- Walkthrough allocations total **600 seconds**.
+- Peak and quiet recovery calculations agree with the earlier capacity model.
+- Local document links resolve.
+- Whitespace checks pass.
+- The existing chat file’s hash is unchanged.
+- Git HEAD and the three existing commits remain unchanged.
+
+The duplicate, older-event, echo/repair and outage rules were also manually traced across the specifications.
+
+**No application tests, benchmark, real Salesforce capability verification or executable demo was performed.** Phase 7 remains partial because complete authentic chat coverage and final repository packaging/access and delivery checks are still outstanding.
+
+> what will be done phase 8?
+
+Phase 8 will turn the agreed design into an **optional runnable demo** using **TypeScript on Node.js 20+**, with a fake Salesforce service and durable local storage.
+
+It will demonstrate the synchronization rules rather than connect to real Salesforce.
+
+### What will be built
+
+| Part | Purpose |
+|---|---|
+| Portal edit handler | Save an edit’s values, actor, time, history and outbound job atomically. |
+| Fake Salesforce | Simulate records, revisions, conditional updates, webhooks, replay, outages and ambiguous responses. |
+| Inbound handler | Validate events, deduplicate them, preserve history and resolve fields. |
+| Outbound worker | Process durable jobs, respect dependencies, retry failures and reconcile uncertain results. |
+| Shared request limiter | Enforce the configured cap across writes, reads, retries, repairs and replay calls. |
+| Recovery flow | Replay missed changes before safely draining queued writes. |
+| Narrated demo command | Run deterministic scenarios and explain their outcomes. |
+
+The demo will require only:
+
+```text
+npm install
+npm run demo
+```
+
+The exact command will be finalized during implementation. It will require no external PostgreSQL, Redis, Docker or Salesforce account.
+
+### Scenarios that will be checked
+
+1. **Duplicate webhook:** repeated delivery produces one logical edit.
+2. **Older event after a newer one:** newer fields remain current while every distinct edit stays in history.
+3. **Conflicting edits:** different-field changes survive; same-field changes resolve using the documented policy.
+4. **Loop prevention and repair:** an echo causes no repeated write, while genuine divergence can still trigger correction.
+5. **Parent and child creates:** a contact waits for its customer’s confirmed mapping.
+6. **Accepted request with lost response:** recovery avoids duplicate creates and stale overwrites.
+7. **Rate enforcement:** all outbound attempts count, including retries; a lower demo cap makes pacing visible.
+8. **Outage and restart:** a real process restart preserves pending work while fake Salesforce is unavailable.
+9. **Dropped webhook recovery:** replay restores missed edits and their history.
+
+Six-hour outage arithmetic will use **simulated time**, clearly labeled; the demo will not wait six hours.
+
+### Documentation and completion criteria
+
+Phase 8 will also produce a README with setup, execution instructions, limitations and the distinction between **local demo persistence** and **production PostgreSQL**. Meaningful automated checks will verify the behavior, and any justified changes to the design will be recorded.
+
+Completion requires a fresh checkout to run with `npm install` plus one demo command, with the required scenarios passing and restart durability and rate enforcement demonstrated.
+
+**Before starting, Phase 7’s dependency gaps must be inspected.** It is currently partial because authentic chat coverage and final submission packaging remain pending. Those gaps need an explicit direction before proceeding with dependent Phase 8 work.
+
+> what are the phase 7 gaps?
+
+Phase 7 has three outstanding submission gaps:
+
+1. **Complete, authentic AI chat history**
+   `Chat_History/chat_history.md` exists and was preserved, but it has not been verified to contain every assignment chat, prompt and reply—including planning and all phases. Complete, unedited source transcripts must be supplied and checked.
+
+2. **Final repository packaging and access**
+   Existing commits are preserved, but Phase 6 and Phase 7 artifacts are not all committed. The final submission must include all intended files and full git history, with recipient access verified. No new commits or push were performed.
+
+3. **Revised submission timing and delivery**
+   The brief’s deadline was **23 November 2026 at 10:00 AM IST**, which had passed when Phase 7 was performed. Revised timing needs confirmation; nothing has been submitted externally.
+
+The **design, three operational metrics, walkthrough script and submission checklist are ready**.
+
+Separately, real Salesforce capabilities and the worst-case 30-second latency bound remain explicit **design feasibility questions**. They are documented open questions, not missing Phase 7 documents.
+
+Details are in [submission-checklist.md](./docs/submission-checklist.md).
+
+> all three things have been taken care of
+
+<details><summary>2 previous messages</summary>
+
+> I’ll record those three gaps as resolved based on your confirmation, update Phase 7’s status, and keep the production feasibility questions open.
+>
+> <details><summary>Edited 4 files, ran 2 commands</summary>
+>
+> - Ran `Get-Content IMPLEMENTATION_PLAN.md | Select-Object -First 65; Get-Content docs/submission-checklist.md; Get-Content docs/requirements-checklist.md | Select-Object -Last 25; Get-Content docs/design.md | Select-Object -Last 6; git status --short`
+> - Wrote `./IMPLEMENTATION_PLAN.md` (+2 -1)
+> - Wrote `./docs/design.md` (+1 -1)
+> - Wrote `./docs/requirements-checklist.md` (+1 -1)
+> - Wrote `./docs/submission-checklist.md` (+6 -6)
+> - Ran `git diff --check; git diff --stat`
+>
+> </details>
+</details>
+
+Marked **Phase 7 complete** in the plan and submission documents, recording that all three gaps were resolved based on your confirmation.
+
+Phase 8 is ready to begin when you instruct **“proceed with phase 8.”**

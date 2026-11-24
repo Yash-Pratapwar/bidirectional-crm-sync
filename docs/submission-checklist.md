@@ -1,6 +1,6 @@
 # Required submission checklist
 
-24 November 2026. Phase 7 is **partial**: design artifacts are assembled, but full authentic chat coverage and final repository packaging are pending. No external submission, new git commit or optional implementation was authorized or performed.
+24 November 2026. Phase 7 is **complete**. After document assembly, the user confirmed that all three outstanding items were taken care of: complete authentic chat history, final repository packaging/access, and revised submission timing/delivery. These external items are closed on user confirmation; the assistant has not independently verified the exports or delivery. No optional implementation has started.
 
 | Item | Evidence now | Remaining action / status |
 |---|---|---|
@@ -8,9 +8,9 @@
 | Open questions, provisional answers and consequences | [assumptions.md](assumptions.md), Q01–Q21; design §1 | Available. Client decisions remain provisional, especially replay/conditional mutation/provenance, timing, quotas and retention. |
 | Exactly three primary metrics and escalation values | Design §11 | Available: propagation age, rolling-window request starts, retention safety margin. |
 | Ten-minute walkthrough | [walkthrough.md](walkthrough.md), 600-second allocation | Prepared; live delivery/timed rehearsal not performed. |
-| Every task chat, every prompt/reply, unedited | Existing [chat_history.md](../Chat_History/chat_history.md), 37,862 bytes | **Pending.** File exists and is preserved; provenance and exhaustive coverage are not established. Visible headings include Phase 1/next phase/Phase 4; they do not establish coverage of planning and all phase chats, including this one. No reconstruction is a substitute. |
-| Repository with every original commit/message | Local `.git`; three reachable commits listed below; origin configured | History available and preserved. Current Phase 6/7 working artifacts are not all committed. Final commit/package/link accessibility validation pending; do not send a working-tree-only ZIP as the complete git history. |
-| Revised deadline and actual delivery | Brief says calendar thread, 23 November 2026, 10:00 AM IST | **Pending:** that time precedes this work date. User must confirm delivery timing; no message sent. |
+| Every task chat, every prompt/reply, unedited | Existing [chat_history.md](../Chat_History/chat_history.md); initial inspection recorded below | Resolved by user confirmation. Complete authentic coverage was not independently revalidated by the assistant. |
+| Repository with every original commit/message | Local `.git`; initial history inspection recorded below | Final packaging/access resolved by user confirmation. Historical entry-state observations below are not a current repository inventory. |
+| Revised deadline and actual delivery | Original brief deadline: 23 November 2026, 10:00 AM IST | Revised timing/delivery resolved by user confirmation. No revised date or delivery receipt was supplied; none is invented here. |
 | Optional TypeScript/Node.js ≥20 fake-CRM demo | None | Phase 8 not started; optional code absence is not a required-submission gap. |
 
 ## Authentic export process and verification
@@ -25,7 +25,7 @@ Existing file SHA-256 before Phase 7 edits: `4CDF358E00FC4DC8D1BBAEB6FFE6B550FA7
 
 ## Repository evidence and final packaging
 
-Observed local history, newest first:
+Observed local history at initial Phase 7 assembly, newest first (historical snapshot):
 
 | Commit | Original message |
 |---|---|
@@ -48,4 +48,4 @@ At Phase 7 entry, `IMPLEMENTATION_PLAN.md` and `docs/assumptions.md` were modifi
 
 Checked original 12-section outline, field scope, atomic acknowledgment, actor/time refinement, candidate/tie policy, parent dependencies, stale response protection, strict shared cap and full request/echo accounting. Phase 6 supersedes preliminary 120-minute and nominal latency assumptions. No new contradiction requiring a different business policy was found. Healthy worst-case 30 seconds under bursts remains unproven, not silently declared met. No application, load test or Salesforce capability test was run.
 
-To finish Phase 7: supply and verify full authentic task-chat coverage; complete authorized repository packaging/access validation with all intended artifacts; record the revised delivery arrangement. Keep Phase 7 partial until the required submission items are satisfied. Upstream/production questions can remain explicitly open as allowed by the brief; they cannot be described as verified guarantees.
+Phase 7 closure: the user subsequently confirmed all three submission gaps were resolved. Earlier export instructions and repository observations document the initial review and remain as guidance/history, not outstanding blockers. Upstream/production questions remain explicitly open as allowed by the brief; they cannot be described as verified guarantees. Phase 8 requires a separate instruction to proceed.
