@@ -4,7 +4,7 @@
 
 | Item | Evidence now | Remaining action / status |
 |---|---|---|
-| Design document, all 12 sections | [design.md](design.md), linked specifications and [requirements checklist](requirements-checklist.md) | Written and manually reviewed. Conditional feasibility is explicit; this is not verified production compliance. |
+| Design document, all 12 sections | Concise reviewer-facing [design.md](design.md), linked specifications and [requirements checklist](requirements-checklist.md) | Main reading is about 1,840 words; detailed specifications are reference material. Written and manually reviewed. Conditional feasibility is explicit; this is not verified production compliance. |
 | Open questions, provisional answers and consequences | [assumptions.md](assumptions.md), Q01–Q21; design §1 | Available. Client decisions remain provisional, especially replay/conditional mutation/provenance, timing, quotas and retention. |
 | Exactly three primary metrics and escalation values | Design §11 | Available: propagation age, rolling-window request starts, retention safety margin. |
 | Ten-minute walkthrough | [walkthrough.md](walkthrough.md), 600-second allocation | Prepared; live delivery/timed rehearsal not performed. |

@@ -1,6 +1,6 @@
 # Ten-minute walkthrough
 
-Prepared 24 November 2026. Present [design.md](design.md); keep linked detailed specifications available for questions. This is a presentation script, not evidence that a presentation or timed rehearsal has occurred. Stop at 10:00; do not attempt to read the entire design aloud.
+Prepared 24 November 2026. Present the concise reviewer-facing [design.md](design.md); its 12 section numbers match this script. Keep linked detailed specifications available for questions rather than presenting them in sequence. This is a presentation script, not evidence that a presentation or timed rehearsal has occurred. Stop at 10:00; do not attempt to read the entire design aloud.
 
 | Time | Show | Talking points |
 |---|---|---|
@@ -12,7 +12,7 @@ Prepared 24 November 2026. Present [design.md](design.md); keep linked detailed 
 | 5:40–6:30 (50 s) | Design §6 | Durable individual jobs survive restart. Read revision plus complete history, recompute and conditionally patch. A race fails its precondition. Lost response becomes UNCERTAIN; unique non-destructive create-or-resolve and mutation evidence prevent blind duplicates/overwrites. Every request shares one paced cap. |
 | 6:30–8:30 (120 s) | Design §10 table | Outage leaves 432,000 portal jobs and 432,000 remote originals. Replay 433,000 entries including overlap, 866 pages plus four controls. Ingestion, not page fetching, sets 73-minute barrier. Another 87,600 jobs accumulate: B=519,600. Three calls/job; 89 achieved starts/s minus 60 fresh minus 10 overhead leaves 19 old-job requests/s. Say the division aloud: 519,600×3/19/60 = 1,367.37 minutes, plus 73 = 1,440.37 minutes, about 24 hours. This replaces the preliminary 120-minute example. Explain checkpoint gaps block completeness; per-record coverage still required after barrier. |
 | 8:30–9:20 (50 s) | Design §11 | Exactly three numbers: oldest unconfirmed propagation age (page at 30 s healthy), rolling-second outbound starts (page >100), retention safety margin (page <6 h or unsafe/gap). Throttled 70/s leaves zero old-job drain. Preserve work and recalculate rather than violate the cap. |
-| 9:20–10:00 (40 s) | Design §12 and submission checklist | No required code; Phase 8 is unstarted. Demo would be Node.js 20+/TypeScript/fake Salesforce and local durable storage, distinct from production PostgreSQL. State pending authentic full-chat export, final repository packaging, revised deadline and upstream/latency questions. |
+| 9:20–10:00 (40 s) | Design §12 and submission checklist | No required code; Phase 8 is unstarted. Demo would be Node.js 20+/TypeScript/fake Salesforce and local durable storage, distinct from production PostgreSQL. Submission items are resolved by user confirmation. State the remaining upstream/latency questions. |
 
 Durations total `90+50+50+90+60+50+120+50+40 = 600 seconds`.
 
